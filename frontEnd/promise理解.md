@@ -18,3 +18,32 @@
   
   ### 2. .then()用法
   
+  then()方法接受两个参数，第一个处理resolve,第二个处理reject
+  ```javascript
+    const resolve = (res)=>{
+      setTimeout(()=>{
+        console.log(res);
+      },1000)
+    }
+    const reject = ()=>{
+      console.log('rejected')
+    }
+    get(url).then(resolve,reject)
+  ```
+  这样在请求收到响应之后1秒后会打印响应。相信如果这样写会怎样呢：
+  ```javascript
+   ...
+   get(url).then(resolve,reject).then(resole)
+  ```
+  其实这样并不会是想象中的 先打印请求响应然后过一秒再打印undefined.接下来改造一下resolve
+  ```javascript
+  const resolve = (res)=>{
+    return new Promise((r,j)=>{
+       setTimeout(()=>{
+          console.log(res);
+        },1000)
+      }
+    })
+     
+  ```
+  
