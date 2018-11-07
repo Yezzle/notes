@@ -30,7 +30,8 @@
     }
     get(url).then(resolve,reject)
   ```
-  这样在请求收到响应之后1秒后会打印响应。相信如果这样写会怎样呢：
+  也可以只传一个参数处理resolve,然后在.catch()中处理reject:<code>get(url).then(resolve).catch(reject)</code><br>
+  这样在请求收到响应之后1秒后会打印响应,这是两个连续的异步调用。<br><br>如果这样写会怎样呢：
   ```javascript
    ...
    get(url).then(resolve,reject).then(resole)
@@ -46,4 +47,4 @@
     })
      
   ```
-  
+     
