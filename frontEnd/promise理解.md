@@ -1,7 +1,7 @@
 ## Promise的个人理解
 
 ### 1. 创建Promise对象
-  在new Promise()对象的时候其实Promise里面的状态就已经开始了:pending => resolved/rejected
+  在new Promise()对象的时候其实Promise里面的状态转变就已经开始了:pending => resolved/rejected
 ```javascript
   new Promise((resolve,reject)=>{
     setTimeout(()=>{
@@ -59,5 +59,46 @@
   
   ### 3. Promise.resovle()
   
-  Promise.resolve()的作用其实就是将传入的对象转化成promise，如果传入一个对象，则返回一个对象，
+  Promise.resolve()的作用其实就是将传入的对象转化成promise：<code>Promise.resolve(obj)</code>等价于<code>Promise.resolve(resolve=>resolve(obj))</code>
+  
+  ### 4. Promise.all()
+  
+  Promise.all()接收一个Promise的数组,返回值是一个Promise.当数组中所有的Promise完成后再执行resolve:
+    
+  ```javascript
+    let p1 = ()=>new Promise((resolve,reject)=>{
+      setTimeout(()=>{
+        console.log('hello');
+        resolve("Hello");
+      },1000);
+    });
+    let p2 =()=> new Promise((resolve,reject)=>{
+      setTimeout(()=>{
+        console.log('world')
+        resolve("World");
+      },2000);
+    }); 
+    Promise.all([p1(),p2()]).then((res)=>{
+      console.log('result',res);
+    });
+  ```
+    打印结果：
+    
+```
+    hello
+    world
+    result [ 'Hello', 'World' ]
+```
+  ### Promise.race()
+  
+  Promise.race()用于异步竞速，当有多个异步请求需要用时最短的请求完成时做相应的操作时就可以用Promise.race([p1,p2,p3,...])
+  用法同Promise.all(). 
+  常用场景比如自制抢票的请求竞速
+  
+  ----
+  经验总结
+  
+  1.Promise对象就是一个Promise对象，并且只有pending,resolve/reject 三种状态，并不能直接返回结果
+  2.Promise对象在new的时候状态已经由pending向resolve/reject改变，所以封装一般写成函数形式:<code>()=>new Promise</code>
+  3.Promise还没想到，想到了再写吧~
   
