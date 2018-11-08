@@ -1,6 +1,7 @@
 ## Promise的个人理解
 
 ### 1. 创建Promise对象
+  在new Promise()对象的时候其实Promise里面的状态就已经开始了:pending => resolved/rejected
 ```javascript
   new Promise((resolve,reject)=>{
     setTimeout(()=>{
@@ -13,7 +14,7 @@
     },1000)
   })
 ```
-&nbsp;&nbsp;就像上面将要执行的异步操作封装成一个promise对象,我们使用的第三方请求库fetch,axios等都是这样封装的,这样你就可以通过promise对象直接传入一个回调函数：<br>&nbsp;&nbsp;&nbsp;&nbsp;<code>.then(()=>{\/\*do something\*\/})</code>
+&nbsp;&nbsp;就像上面将要执行的异步操作封装成一个promise对象,我们使用的第三方请求库fetch,axios等都是这样封装ajax请求的,这样你就可以通过promise对象直接传入一个回调函数：<br>&nbsp;&nbsp;&nbsp;&nbsp;<code>.then(()=>{\/\*do something\*\/})</code>
 <br>&nbsp;&nbsp;这时如果想在回调函数里面搞些异步的事情并且传递参数，请看.then()的用法
   
   ### 2. Promise.then()用法
