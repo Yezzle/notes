@@ -89,7 +89,7 @@
     world
     result [ 'Hello', 'World' ]
 ```
-  ### Promise.race()
+  ### 4. Promise.race()
   
   Promise.race()用于异步竞速，当有多个异步请求需要用时最短的请求完成时做相应的操作时就可以用Promise.race([p1,p2,p3,...])
   用法同Promise.all(). 
