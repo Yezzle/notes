@@ -98,7 +98,7 @@
   ----
   经验总结
   
-  1.Promise对象就是一个Promise对象，并且只有pending,resolve/reject 三种状态，并不能直接返回结果
-  2.Promise对象在new的时候状态已经由pending向resolve/reject改变，所以封装一般写成函数形式:<code>()=>new Promise</code>
+  1.Promise对象就是一个Promise对象，并且只有pending,resolve/reject 三种状态，并不能直接返回结果<br>
+  2.Promise对象在new的时候状态已经由pending向resolve/reject改变，所以封装一般写成函数形式:<code>()=>new Promise</code><br>
   3.Promise还没想到，想到了再写吧~
   
